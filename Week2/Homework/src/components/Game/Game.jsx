@@ -36,7 +36,7 @@ function Game({ level, onStart,onFinish }) {
     <S.Board boardSize={size}>
       {board.map((number, index) => (
         <S.Cell
-          key={index}
+          key={`${index}-${number}`}
           onClick={() => handleClick(number, index)}
           disabled={number === null}
         >

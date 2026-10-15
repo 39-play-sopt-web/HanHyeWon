@@ -1,4 +1,15 @@
 import styled from '@emotion/styled'
+import { keyframes } from '@emotion/react'
+const flash = keyframes`
+  0% {
+    background: #d4f5a3;
+    transform: scale(0.9);
+  }
+  100% {
+    background: white;
+    transform: scale(1);
+  }
+`
 
 export const Container = styled.main`
   display: flex;
@@ -34,6 +45,7 @@ export const Cell = styled.button`
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
+   animation: ${flash} 0.3s ease-out;
 
   &:active {
     background: #d4f5a3;
