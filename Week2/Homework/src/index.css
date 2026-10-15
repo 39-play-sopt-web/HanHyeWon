@@ -7,7 +7,7 @@
 body {
   min-height: 100vh;
   font-family: system-ui, -apple-system, sans-serif;
-  background: linear-gradient(135deg, #c3f4fd 0%, #a8f0c6 100%);
+  background: white;
 }
 
 button,

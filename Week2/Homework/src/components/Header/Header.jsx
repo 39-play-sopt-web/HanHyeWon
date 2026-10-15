@@ -1,9 +1,17 @@
+import * as S from './Header.styles'
+
 function Header({ tab, onTabChange, level, onLevelChange, time }) {
   return (
-    <header>
-      <h1>🔢 숫자 클릭 게임</h1>
-      <button onClick={() => onTabChange('game')}>게임</button>
-      <button onClick={() => onTabChange('ranking')}>랭킹</button>
+    <S.Container>
+      <S.Title>🔢 숫자 클릭 게임</S.Title>
+      <S.Nav>
+        <S.TabButton isActive={tab === 'game'} onClick={() => onTabChange('game')}>
+          게임
+        </S.TabButton>
+        <S.TabButton isActive={tab === 'ranking'} onClick={() => onTabChange('ranking')}>
+          랭킹
+        </S.TabButton>
+      </S.Nav>
 
       {tab === 'game' && (
         <div>
@@ -18,7 +26,7 @@ function Header({ tab, onTabChange, level, onLevelChange, time }) {
           <span>{time.toFixed(2)}</span>
         </div>
       )}
-    </header>
+    </S.Container>
   )
 }
 export default Header

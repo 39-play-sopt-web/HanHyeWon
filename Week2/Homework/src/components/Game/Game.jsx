@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { LEVELS } from '../../constants/level'
 import { shuffle } from '../../utils/shuffle'
+import * as S from './Game.styles' 
 
 // start부터 end까지 배열
 function createNumbers(start, end) {
@@ -8,7 +9,7 @@ function createNumbers(start, end) {
 }
 
 function Game({ level, onStart,onFinish }) {
-  const { maxNumber } = LEVELS[level]
+  const { size, maxNumber } = LEVELS[level]
   const half = maxNumber / 2
 
   const [board, setBoard] = useState(() => shuffle(createNumbers(1, half)))
@@ -28,19 +29,23 @@ function Game({ level, onStart,onFinish }) {
   }
 
   return (
-    <div>
-      <p>다음 숫자 {nextNumber} ({nextNumber} / {maxNumber})</p>
+  <S.Container>
+    <S.NextNumber>
+      다음 숫자 <strong>{nextNumber}</strong> ({nextNumber} / {maxNumber})
+    </S.NextNumber>
+    <S.Board boardSize={size}>
       {board.map((number, index) => (
-        <button
+        <S.Cell
           key={index}
           onClick={() => handleClick(number, index)}
           disabled={number === null}
         >
           {number}
-        </button>
+        </S.Cell>
       ))}
-    </div>
-  )
+    </S.Board>
+  </S.Container>
+)
 }
 
 

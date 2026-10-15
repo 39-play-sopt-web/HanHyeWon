@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { getRecords, clearRecords } from '../../utils/storage'
+import * as S from './Ranking.styles'
 
 function sortRecords(records) {
   return [...records].sort((a, b) => {
@@ -17,16 +18,16 @@ function Ranking() {
   }
 
   return (
-    <section>
-      <div>
-        <h2>랭킹</h2>
-        <button onClick={handleReset}>초기화</button>
-      </div>
+    <S.Container>
+      <S.Top>
+        <S.Title>랭킹</S.Title>
+        <S.ResetButton onClick={handleReset}>초기화</S.ResetButton>
+      </S.Top>
 
       {records.length === 0 ? (
-        <p>아직 기록이 없어요</p>
+        <S.Empty>아직 기록이 없어요</S.Empty>
       ) : (
-        <table>
+        <S.Table>
           <thead>
             <tr>
               <th>순위</th>
@@ -45,9 +46,9 @@ function Ranking() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </S.Table>
       )}
-    </section>
+    </S.Container>
   )
 }
 
