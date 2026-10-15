@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'     
-import './App.css'
 import Header from './components/Header/Header'
 import Game from './components/Game/Game'
 import Ranking from './components/Ranking/Ranking' 
