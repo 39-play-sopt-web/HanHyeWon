@@ -13,21 +13,24 @@ function Header({ tab, onTabChange, level, onLevelChange, time }) {
         </S.TabButton>
       </S.Nav>
 
-      {tab === 'game' && (
-        <div>
-          <select
-            value={level}
-            onChange={(e) => onLevelChange(Number(e.target.value))}
-          >
-            <option value={1}>Level 1</option>
-            <option value={2}>Level 2</option>
-            <option value={3}>Level 3</option>
-          </select>
-          <span>{time.toFixed(2)}</span>
-        </div>
-      )}
+      <S.Controls>
+        {tab === 'game' && (
+          <>
+            <S.Select
+              value={level}
+              onChange={(e) => onLevelChange(Number(e.target.value))}
+            >
+              <option value={1}>Level 1</option>
+              <option value={2}>Level 2</option>
+              <option value={3}>Level 3</option>
+            </S.Select>
+            <S.Timer>{time.toFixed(2)}</S.Timer>
+          </>
+        )}
+      </S.Controls>
     </S.Container>
   )
 }
+
 export default Header
 
