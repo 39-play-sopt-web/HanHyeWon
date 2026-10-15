@@ -2,13 +2,12 @@ import { useState } from 'react'
 import { LEVELS } from '../../constants/level'
 import { shuffle } from '../../utils/shuffle'
 
-// start부터 end까지 배열먼저만들고
+// start부터 end까지 배열
 function createNumbers(start, end) {
   return Array.from({ length: end - start + 1 }, (_, i) => start + i)
 }
 
-//상태는 세개 - 지금 화면칸/ 아직 안 나온대기/ 다음 누를 숫자
-function Game({ level }) {
+function Game({ level, onStart }) {
   const { maxNumber } = LEVELS[level]
   const half = maxNumber / 2
 
@@ -18,6 +17,7 @@ function Game({ level }) {
 
   function handleClick(number, index) {
     if (number !== nextNumber) return
+    if (number === 1) onStart()  
 
     const newBoard = [...board]
     newBoard[index] = queue[0] ?? null
@@ -41,5 +41,7 @@ function Game({ level }) {
     </div>
   )
 }
+
+
 
 export default Game
