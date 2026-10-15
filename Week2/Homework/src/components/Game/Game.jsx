@@ -7,7 +7,7 @@ function createNumbers(start, end) {
   return Array.from({ length: end - start + 1 }, (_, i) => start + i)
 }
 
-function Game({ level, onStart }) {
+function Game({ level, onStart,onFinish }) {
   const { maxNumber } = LEVELS[level]
   const half = maxNumber / 2
 
@@ -18,6 +18,7 @@ function Game({ level, onStart }) {
   function handleClick(number, index) {
     if (number !== nextNumber) return
     if (number === 1) onStart()  
+    if (number === maxNumber) onFinish()
 
     const newBoard = [...board]
     newBoard[index] = queue[0] ?? null

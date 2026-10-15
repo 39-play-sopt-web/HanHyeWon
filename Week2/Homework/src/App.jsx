@@ -3,6 +3,7 @@ import './App.css'
 import Header from './components/Header/Header'
 import Game from './components/Game/Game'
 import Ranking from './components/Ranking/Ranking' 
+import { saveRecord } from './utils/storage'  
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
   const [level, setLevel] = useState(1)  
   const [time, setTime] = useState(0) 
   const [startTime, setStartTime] = useState(null)
+  const [round, setRound] = useState(0) 
 
   //타이머 
   useEffect(() => {
@@ -32,6 +34,23 @@ function App() {
     setTime(0)
   }
 
+  function handleFinish() {
+  const playTime = (Date.now() - startTime) / 1000
+  setStartTime(null)   
+  setTime(playTime)
+
+  saveRecord({
+    playedAt: new Date().toLocaleString(), 
+    level,                                 
+    time: playTime,                      
+  })
+
+  alert(`게임 종료! 걸린 시간: ${playTime.toFixed(2)}초`)
+  setTime(0)
+  setRound(round + 1)
+}
+
+
   return (
     <div>
       <Header
@@ -43,7 +62,7 @@ function App() {
 />
 
 
-    {tab === 'game' ? <Game key={level} level={level} onStart={handleStart} /> : <Ranking />}
+    {tab === 'game' ? <Game key={`${level}-${round}`} level={level} onStart={handleStart} onFinish={handleFinish} /> : <Ranking />}
 
     </div>
   )
