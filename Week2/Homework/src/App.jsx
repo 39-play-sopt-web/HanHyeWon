@@ -3,6 +3,7 @@ import Header from './components/Header/Header'
 import Game from './components/Game/Game'
 import Ranking from './components/Ranking/Ranking' 
 import { saveRecord } from './utils/storage'  
+import Modal from './components/Modal/Modal' 
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
   const [time, setTime] = useState(0) 
   const [startTime, setStartTime] = useState(null)
   const [round, setRound] = useState(0) 
+  const [result, setResult] = useState(null) 
 
   //타이머 
   useEffect(() => {
@@ -44,11 +46,13 @@ function App() {
     time: playTime,                      
   })
 
-  alert(`게임 종료! 걸린 시간: ${playTime.toFixed(2)}초`)
+  setResult(playTime) 
+}
+function handleCloseModal() { 
+  setResult(null)
   setTime(0)
   setRound(round + 1)
 }
-
 
   return (
     <div>
@@ -63,7 +67,9 @@ function App() {
 
     {tab === 'game' ? <Game key={`${level}-${round}`} level={level} onStart={handleStart} onFinish={handleFinish} /> : <Ranking />}
 
-    </div>
-  )
+    {result !== null && (
+      <Modal time={result} onClose={handleCloseModal} />
+    )}
+  </div>)
 }
 export default App
