@@ -21,7 +21,8 @@ const [time, setTime] = useState(0)
 />
 
 
-      {tab === 'game' ? <Game /> : <Ranking />}  
+    {tab === 'game' ? <Game key={level} level={level} /> : <Ranking />}
+
     </div>
   )
 }
