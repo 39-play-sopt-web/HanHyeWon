@@ -13,7 +13,7 @@ function MovieCard({ movie }: MovieCardProps) {
   return (
     <S.Card to={`/movie/${id}`}>
       <S.PosterWrapper>
-        <S.Poster src={`${POSTER_BASE_URL}${poster_path}`} alt={title} />
+        {poster_path && <S.Poster src={`${POSTER_BASE_URL}${poster_path}`} alt={title} />}
         <S.Rating>★ {vote_average.toFixed(1)}</S.Rating>
       </S.PosterWrapper>
 
