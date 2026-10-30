@@ -9,7 +9,6 @@ const theme = {
     gray100: '#d4d4d8',
     gray200: '#a1a1aa',
     gray300: '#71717a',
-    black: '#000000',
   },
   fonts: {
     title: 'font-size: 24px; font-weight: 700;',

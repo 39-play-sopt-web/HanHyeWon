@@ -12,7 +12,6 @@ export interface MovieListResponse {
   page: number
   results: Movie[]
   total_pages: number
-  total_results: number
 }
 
 export interface Genre {
@@ -28,7 +27,6 @@ export interface ProductionCountry {
 export interface SpokenLanguage {
   iso_639_1: string
   english_name: string
-  name: string
 }
 
 export interface MovieDetail extends Movie {
