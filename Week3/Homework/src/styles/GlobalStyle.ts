@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     min-height: 100vh;
-    font-family: 'Pretendard', system-ui, -apple-system, sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
     color: ${({ theme }) => theme.colors.white};
     background: ${({ theme }) => theme.colors.background};
   }
