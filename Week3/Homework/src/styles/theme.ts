@@ -6,14 +6,11 @@ const theme = {
     point: '#9ef5e6',
     pointGradient: 'linear-gradient(90deg, #9ef5e6, #a3e4ff)',
     white: '#ffffff',
-    gray100: '#d4d4d8',
-    gray200: '#a1a1aa',
-    gray300: '#71717a',
+    gray: '#a1a1aa',
   },
   fonts: {
     title: 'font-size: 24px; font-weight: 700;',
     subtitle: 'font-size: 18px; font-weight: 700;',
-    body: 'font-size: 14px; font-weight: 400;',
     caption: 'font-size: 12px; font-weight: 400;',
   },
 }

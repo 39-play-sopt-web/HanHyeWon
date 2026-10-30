@@ -2,11 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Container = styled.header`
-  position: sticky;
-  top: 0;
-  z-index: 10;
   padding: 16px 24px;
-  background: ${({ theme }) => theme.colors.background};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 `
 
