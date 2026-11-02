@@ -3,11 +3,12 @@ import Header from './components/Header/Header'
 import Game from './components/Game/Game'
 import Ranking from './components/Ranking/Ranking' 
 import { saveRecord } from './utils/storage'  
-import Modal from './components/Modal/Modal' 
+import Modal from './components/Modal/Modal'
+import { TAB } from './constants/tab'
 
 function App() {
 
-  const [tab, setTab] = useState('game')   
+  const [tab, setTab] = useState(TAB.GAME)   
   const [level, setLevel] = useState(1)  
   const [time, setTime] = useState(0) 
   const [startTime, setStartTime] = useState(null)
@@ -29,6 +30,12 @@ function App() {
     setStartTime(Date.now())
   }
 
+  function handleTabChange(newTab) {
+    setTab(newTab)
+    setStartTime(null)
+    setTime(0)
+  }
+
   function handleLevelChange(newLevel) {
     setLevel(newLevel)
     setStartTime(null)
@@ -41,7 +48,7 @@ function App() {
   setTime(playTime)
 
   saveRecord({
-    playedAt: new Date().toLocaleString(), 
+    playedAt: new Date().toISOString(),
     level,                                 
     time: playTime,                      
   })
@@ -58,14 +65,14 @@ function handleCloseModal() {
     <div>
       <Header
       tab={tab}
-      onTabChange={setTab}
+      onTabChange={handleTabChange}
       level={level}
       onLevelChange={handleLevelChange}
       time={time}
 />
 
 
-    {tab === 'game' ? <Game key={`${level}-${round}`} level={level} onStart={handleStart} onFinish={handleFinish} /> : <Ranking />}
+    {tab === TAB.GAME ? <Game key={`${level}-${round}`} level={level} onStart={handleStart} onFinish={handleFinish} /> : <Ranking />}
 
     {result !== null && (
       <Modal time={result} onClose={handleCloseModal} />

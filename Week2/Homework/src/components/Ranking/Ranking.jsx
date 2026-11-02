@@ -38,11 +38,11 @@ function Ranking() {
           </thead>
           <tbody>
             {records.map((record, index) => (
-              <tr key={index}>
+              <tr key={record.playedAt}>
                 <td>{index + 1}</td>
                 <td>Level {record.level}</td>
                 <td>{record.time.toFixed(2)}초</td>
-                <td>{record.playedAt}</td>
+                <td>{new Date(record.playedAt).toLocaleString('ko-KR')}</td>
               </tr>
             ))}
           </tbody>

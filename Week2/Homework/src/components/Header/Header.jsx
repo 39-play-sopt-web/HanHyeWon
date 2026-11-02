@@ -1,20 +1,21 @@
 import * as S from './Header.styles'
+import { TAB } from '../../constants/tab'
 
 function Header({ tab, onTabChange, level, onLevelChange, time }) {
   return (
     <S.Container>
       <S.Title>🔢 숫자 클릭 게임</S.Title>
       <S.Nav>
-        <S.TabButton isActive={tab === 'game'} onClick={() => onTabChange('game')}>
+        <S.TabButton isActive={tab === TAB.GAME} onClick={() => onTabChange(TAB.GAME)}>
           게임
         </S.TabButton>
-        <S.TabButton isActive={tab === 'ranking'} onClick={() => onTabChange('ranking')}>
+        <S.TabButton isActive={tab === TAB.RANKING} onClick={() => onTabChange(TAB.RANKING)}>
           랭킹
         </S.TabButton>
       </S.Nav>
 
       <S.Controls>
-        {tab === 'game' && (
+        {tab === TAB.GAME && (
           <>
             <S.Select
               value={level}
