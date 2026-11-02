@@ -18,14 +18,18 @@ function Game({ level, onStart,onFinish }) {
 
   function handleClick(number, index) {
     if (number !== nextNumber) return
-    if (number === 1) onStart()  
-    if (number === maxNumber) onFinish()
+    if (number === 1) onStart()
 
     const newBoard = [...board]
     newBoard[index] = queue[0] ?? null
     setBoard(newBoard)
     setQueue(queue.slice(1))
-    setNextNumber(nextNumber + 1)
+
+    if (number === maxNumber) {
+      onFinish()
+    } else {
+      setNextNumber(nextNumber + 1)
+    }
   }
 
   return (
