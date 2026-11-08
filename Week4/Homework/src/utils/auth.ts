@@ -8,6 +8,10 @@ export const saveAuth = (authorizationCode: string, part: Part) => {
   localStorage.setItem(PART_KEY, part)
 }
 
+export const getAuthorizationCode = () => {
+  return localStorage.getItem(AUTHORIZATION_CODE_KEY)
+}
+
 export const getPart = () => {
   return localStorage.getItem(PART_KEY)
 }
