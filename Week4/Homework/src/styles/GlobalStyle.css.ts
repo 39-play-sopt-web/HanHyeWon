@@ -26,3 +26,7 @@ globalStyle('button', {
 globalStyle('input, textarea', {
   font: 'inherit',
 })
+
+globalStyle('ul', {
+  listStyle: 'none',
+})
