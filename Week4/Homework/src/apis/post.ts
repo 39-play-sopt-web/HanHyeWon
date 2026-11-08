@@ -1,5 +1,9 @@
 import type { ApiResponse } from '../types/api'
-import type { Post, PostListResponse } from '../types/post'
+import type {
+  CreatePostRequest,
+  Post,
+  PostListResponse,
+} from '../types/post'
 import instance from './instance'
 
 export const getPosts = async (keyword: string) => {
@@ -11,5 +15,10 @@ export const getPosts = async (keyword: string) => {
 
 export const getPost = async (postId: number) => {
   const { data } = await instance.get<ApiResponse<Post>>(`/posts/${postId}`)
+  return data.data
+}
+
+export const createPost = async (payload: CreatePostRequest) => {
+  const { data } = await instance.post<ApiResponse<Post>>('/posts', payload)
   return data.data
 }
