@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import PostEditForm from '../../components/PostEditForm/PostEditForm'
+import { useDeletePost } from '../../hooks/useDeletePost'
 import { usePost } from '../../hooks/usePost'
 import { formatDate } from '../../utils/formatDate'
 import * as styles from './PostDetailPage.css'
@@ -10,6 +11,13 @@ function PostDetailPage() {
   const { postId } = useParams()
   const { data: post, isPending, isError } = usePost(Number(postId))
   const [isEditing, setIsEditing] = useState(false)
+  const { mutate: deletePost } = useDeletePost()
+
+  const handleDelete = (id: number) => {
+    deletePost(id, {
+      onSuccess: () => navigate('/posts'),
+    })
+  }
 
   return (
     <>
@@ -42,6 +50,13 @@ function PostDetailPage() {
                   onClick={() => setIsEditing(true)}
                 >
                   수정
+                </button>
+                <button
+                  type="button"
+                  className={styles.button}
+                  onClick={() => handleDelete(post.id)}
+                >
+                  삭제
                 </button>
               </div>
             </>
