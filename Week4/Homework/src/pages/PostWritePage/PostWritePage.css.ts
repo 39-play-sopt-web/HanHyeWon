@@ -35,6 +35,20 @@ export const textarea = style([
   },
 ])
 
+export const helper = style({
+  display: 'flex',
+  fontSize: '12px',
+})
+
+export const error = style({
+  color: vars.colors.error,
+})
+
+export const counter = style({
+  marginLeft: 'auto',
+  color: vars.colors.gray,
+})
+
 export const buttons = style({
   display: 'flex',
   justifyContent: 'flex-end',
@@ -53,4 +67,11 @@ export const submitButton = style({
   color: vars.colors.background,
   backgroundColor: vars.colors.point,
   borderRadius: '8px',
+  selectors: {
+    '&:disabled': {
+      color: vars.colors.gray,
+      backgroundColor: vars.colors.border,
+      cursor: 'not-allowed',
+    },
+  },
 })

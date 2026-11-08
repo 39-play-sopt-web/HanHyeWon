@@ -9,5 +9,6 @@ export const [themeClass, vars] = createTheme({
     pointHover: '#5fd9c4',
     white: '#ffffff',
     gray: '#a1a1aa',
+    error: '#f87171',
   },
 })
