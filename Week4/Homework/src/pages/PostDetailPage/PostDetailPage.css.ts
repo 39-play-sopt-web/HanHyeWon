@@ -40,3 +40,18 @@ export const content = style({
   lineHeight: 1.6,
   whiteSpace: 'pre-wrap',
 })
+
+export const buttons = style({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  gap: '8px',
+  paddingTop: '16px',
+  borderTop: `1px solid ${vars.colors.border}`,
+})
+
+export const button = style({
+  padding: '8px 14px',
+  fontSize: '14px',
+  border: `1px solid ${vars.colors.border}`,
+  borderRadius: '8px',
+})
