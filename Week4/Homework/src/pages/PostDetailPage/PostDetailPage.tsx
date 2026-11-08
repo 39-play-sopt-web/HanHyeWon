@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router'
 import PostEditForm from '../../components/PostEditForm/PostEditForm'
 import { useDeletePost } from '../../hooks/useDeletePost'
 import { usePost } from '../../hooks/usePost'
+import { checkAuth } from '../../utils/auth'
 import { formatDate } from '../../utils/formatDate'
 import * as styles from './PostDetailPage.css'
 
@@ -13,7 +14,14 @@ function PostDetailPage() {
   const [isEditing, setIsEditing] = useState(false)
   const { mutate: deletePost } = useDeletePost()
 
+  const handleEdit = () => {
+    if (!checkAuth()) return
+    setIsEditing(true)
+  }
+
   const handleDelete = (id: number) => {
+    if (!checkAuth()) return
+
     deletePost(id, {
       onSuccess: () => navigate('/posts'),
     })
@@ -47,7 +55,7 @@ function PostDetailPage() {
                 <button
                   type="button"
                   className={styles.button}
-                  onClick={() => setIsEditing(true)}
+                  onClick={handleEdit}
                 >
                   수정
                 </button>
