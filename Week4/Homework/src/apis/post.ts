@@ -7,9 +7,9 @@ import type {
 } from '../types/post'
 import instance from './instance'
 
-export const getPosts = async (keyword: string) => {
+export const getPosts = async (keyword: string, cursor?: number) => {
   const { data } = await instance.get<ApiResponse<PostListResponse>>('/posts', {
-    params: { keyword: keyword || undefined },
+    params: { keyword: keyword || undefined, cursor },
   })
   return data.data
 }
