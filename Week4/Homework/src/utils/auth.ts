@@ -20,3 +20,10 @@ export const clearAuth = () => {
   localStorage.removeItem(AUTHORIZATION_CODE_KEY)
   localStorage.removeItem(PART_KEY)
 }
+
+export const checkAuth = () => {
+  if (getAuthorizationCode()) return true
+
+  alert('회원 코드를 먼저 발급받아 주세요.')
+  return false
+}
