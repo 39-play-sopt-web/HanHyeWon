@@ -3,6 +3,7 @@ import type {
   CreatePostRequest,
   Post,
   PostListResponse,
+  UpdatePostRequest,
 } from '../types/post'
 import instance from './instance'
 
@@ -20,5 +21,16 @@ export const getPost = async (postId: number) => {
 
 export const createPost = async (payload: CreatePostRequest) => {
   const { data } = await instance.post<ApiResponse<Post>>('/posts', payload)
+  return data.data
+}
+
+export const updatePost = async (
+  postId: number,
+  payload: UpdatePostRequest,
+) => {
+  const { data } = await instance.put<ApiResponse<Post>>(
+    `/posts/${postId}`,
+    payload,
+  )
   return data.data
 }
