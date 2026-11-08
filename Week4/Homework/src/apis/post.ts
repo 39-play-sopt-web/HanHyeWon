@@ -34,3 +34,7 @@ export const updatePost = async (
   )
   return data.data
 }
+
+export const deletePost = async (postId: number) => {
+  await instance.delete(`/posts/${postId}`)
+}
