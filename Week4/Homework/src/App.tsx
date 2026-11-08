@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
+import Layout from './components/Layout/Layout'
 import AuthPage from './pages/AuthPage/AuthPage'
 import PostDetailPage from './pages/PostDetailPage/PostDetailPage'
 import PostListPage from './pages/PostListPage/PostListPage'
@@ -9,9 +10,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AuthPage />} />
-        <Route path="/posts" element={<PostListPage />} />
-        <Route path="/posts/write" element={<PostWritePage />} />
-        <Route path="/posts/:postId" element={<PostDetailPage />} />
+        <Route element={<Layout />}>
+          <Route path="/posts" element={<PostListPage />} />
+          <Route path="/posts/write" element={<PostWritePage />} />
+          <Route path="/posts/:postId" element={<PostDetailPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
