@@ -13,9 +13,8 @@ export const Hero = styled.div<{ $backdrop: string }>`
   gap: 32px;
   padding: 32px;
   border-radius: 12px;
-  background-image:
-    linear-gradient(90deg, rgba(24, 24, 29, 0.95), rgba(24, 24, 29, 0.6)),
-    url(${({ $backdrop }) => $backdrop});
+  background-image: linear-gradient(90deg, rgba(24, 24, 29, 0.95), rgba(24, 24, 29, 0.6))
+    ${({ $backdrop }) => $backdrop && `, url(${$backdrop})`};
   background-size: cover;
   background-position: center;
 `
@@ -117,4 +116,10 @@ export const InfoLabel = styled.dt`
 export const InfoValue = styled.dd`
   font-size: 14px;
   font-weight: 700;
+`
+
+export const Message = styled.p`
+  padding: 20px 0;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.gray};
 `

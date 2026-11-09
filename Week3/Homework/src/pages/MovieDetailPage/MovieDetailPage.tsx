@@ -11,35 +11,58 @@ import * as S from './MovieDetailPage.styles'
 function MovieDetailPage() {
   const { movieId } = useParams()
   const [movie, setMovie] = useState<MovieDetail | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
 
   useEffect(() => {
     if (!movieId) return
 
     const fetchMovie = async () => {
-      const data = await getMovieDetail(movieId)
-      setMovie(data)
+      setIsLoading(true)
+      setIsError(false)
+
+      try {
+        const data = await getMovieDetail(movieId)
+        setMovie(data)
+      } catch {
+        setIsError(true)
+      } finally {
+        setIsLoading(false)
+      }
     }
 
     window.scrollTo(0, 0)
     fetchMovie()
   }, [movieId])
 
-  if (!movie) return null
+  if (isLoading) return <S.Message>영화 정보를 불러오는 중...</S.Message>
+
+  if (isError || !movie) {
+    return (
+      <article>
+        <S.BackLink to="/">← 목록으로 돌아가기</S.BackLink>
+        <S.Message>영화 정보를 불러오지 못했어요.</S.Message>
+      </article>
+    )
+  }
+
+  // TMDB는 예산/수익 정보가 없으면 0을 줌
+  const formatMoney = (amount: number) => (amount ? `$${amount.toLocaleString('en-US')}` : '정보 없음')
 
   const infoList = [
     { label: '원제', value: movie.original_title },
     { label: '원어', value: formatLanguage(movie.original_language) },
     { label: '제작 국가', value: movie.production_countries.map(({ name }) => name).join(', ') },
     { label: '사용 언어', value: movie.spoken_languages.map(({ english_name }) => english_name).join(', ') },
-    { label: '예산', value: `$${movie.budget.toLocaleString('en-US')}` },
-    { label: '수익', value: `$${movie.revenue.toLocaleString('en-US')}` },
+    { label: '예산', value: formatMoney(movie.budget) },
+    { label: '수익', value: formatMoney(movie.revenue) },
   ]
 
   return (
     <article>
       <S.BackLink to="/">← 목록으로 돌아가기</S.BackLink>
 
-      <S.Hero $backdrop={`${BACKDROP_BASE_URL}${movie.backdrop_path}`}>
+      <S.Hero $backdrop={movie.backdrop_path ? `${BACKDROP_BASE_URL}${movie.backdrop_path}` : ''}>
         <S.PosterWrapper>
           {movie.poster_path && <S.Poster src={`${POSTER_BASE_URL}${movie.poster_path}`} alt={movie.title} />}
         </S.PosterWrapper>
