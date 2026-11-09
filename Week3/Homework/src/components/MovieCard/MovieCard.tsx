@@ -13,14 +13,18 @@ function MovieCard({ movie }: MovieCardProps) {
   return (
     <S.Card to={`/movie/${id}`}>
       <S.PosterWrapper>
-        {poster_path && <S.Poster src={`${POSTER_BASE_URL}${poster_path}`} alt={title} />}
+        {poster_path ? (
+          <S.Poster src={`${POSTER_BASE_URL}${poster_path}`} alt={title} />
+        ) : (
+          <S.NoImage>No Image</S.NoImage>
+        )}
         <S.Rating>★ {vote_average.toFixed(1)}</S.Rating>
       </S.PosterWrapper>
 
       <S.Info>
         <S.Title>{title}</S.Title>
         <S.ReleaseDate>{formatDate(release_date)}</S.ReleaseDate>
-        <S.Overview>{overview}</S.Overview>
+        <S.Overview>{overview || '등록된 줄거리가 없습니다.'}</S.Overview>
       </S.Info>
     </S.Card>
   )

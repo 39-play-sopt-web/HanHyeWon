@@ -29,6 +29,15 @@ export const Poster = styled.img`
   object-fit: cover;
 `
 
+export const NoImage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  ${({ theme }) => theme.fonts.caption}
+  color: ${({ theme }) => theme.colors.gray};
+`
+
 export const Rating = styled.span`
   position: absolute;
   top: 8px;
